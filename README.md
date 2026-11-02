@@ -1,56 +1,62 @@
-# Character Manager — Java Visual TP5
+# Character Manager — Java Visual TP8
 
-Aplikasi Java sederhana untuk mengelola karakter game. TP5 menambahkan pengelolaan koleksi karakter dengan operasi CRUD, pencarian, statistik, dan eksperimen object reference.
+Aplikasi Java untuk mengelola data karakter dan menampilkannya melalui GUI menggunakan Swing. Pada TP8, program menyiapkan data di `CharacterManager`, lalu menampilkan daftar karakter dan rata-rata level pada jendela `MainWindow`.
 
 ## Identitas
 
 - **Nama:** Herdianta Yuventus Tarigan
 - **NIM:** 253303621206
 - **Kelas:** SI pagi3A
-- **Tanggal:** 29 Oktober 2026
+- **Tanggal:** 3 November 2026
 
-## TP5
+## TP8 — GUI dan MVC
 
-### Fitur baru
+### Fitur
 
-- Menambahkan karakter ke koleksi dan menolak nama duplikat (case-sensitive).
-- Mencari karakter berdasarkan nama dan menghapus karakter berdasarkan nama.
-- Menampilkan jumlah karakter, daftar karakter, dan karakter berdasarkan tipe.
-- Menghitung rata-rata level serta mencari karakter dengan attack power tertinggi.
-- Mengembalikan salinan list melalui `getAllCharacters()` agar pemanggil tidak dapat mengubah koleksi internal manager secara langsung.
+- Membuat lima karakter: Arjuna, Merlin, Athena, Gandalf, dan Lara.
+- Menampilkan nama, tipe, level, HP, dan attack power setiap karakter pada GUI Swing.
+- Menampilkan jumlah karakter dan rata-rata level.
+- Menjalankan inisialisasi GUI melalui `SwingUtilities.invokeLater()` pada Event Dispatch Thread (EDT).
 
-### Output CRUD dan eksperimen reference
+### Bukti screenshot
 
-Screenshot asli output CRUD dari eksekusi program:
+Screenshot yang tersedia menunjukkan VS Code dan log penambahan kelima karakter ketika program dijalankan. Screenshot ini membuktikan proses eksekusi, tetapi tidak menampilkan jendela GUI secara langsung.
+
+![Bukti eksekusi Character Manager TP8](screenshots/tP8.png)
+
+### Aliran data
+
+`Main` membuat `CharacterManager`, menambahkan data karakter, lalu mengirim hasil `getAllCharacters()` kepada constructor `MainWindow`. `CharacterManager` mengelola koleksi karakter menggunakan `ArrayList<Character>`. `MainWindow` menerima daftar tersebut dan membuat `JLabel` untuk setiap karakter serta statistik rata-rata level. `Main` menjadi titik awal yang menghubungkan data Model dengan View. Controller terpisah belum dibuat; alur aplikasi saat ini bersifat sederhana dan berfokus pada penampilan data.
+
+`MainWindow` mewarisi `JFrame` (relasi **is-a**) karena merupakan jenis jendela Swing. Sebaliknya, `CharacterManager` menyimpan `ArrayList<Character>` (relasi **has-a**) sebagai koleksi internal.
+
+### Analisis GUI & MVC
+
+[Buka Google Docs — Bagian D: Analisis GUI & MVC](https://docs.google.com/document/d/1imlYQ9Aih3xNyvJu5ATt4Si4RcZcdOnRJO2-pMKvIcI/edit)
+
+Dokumen disetel ke **Siapa saja yang memiliki link — Pelihat (Viewer)**.
+
+## TP5 — CRUD dan object reference
+
+TP5 menambahkan pengelolaan koleksi karakter, termasuk:
+
+- Menambah karakter dan menolak nama duplikat (case-sensitive).
+- Mencari serta menghapus karakter berdasarkan nama.
+- Menampilkan karakter berdasarkan tipe, jumlah karakter, rata-rata level, dan karakter dengan attack power tertinggi.
+- Mengembalikan salinan list melalui `getAllCharacters()` agar pemanggil tidak mengubah koleksi internal secara langsung.
 
 ![Screenshot output CRUD Character Manager TP5](screenshots/tp5-crud.png)
 
-Screenshot asli eksperimen object reference:
-
 ![Screenshot eksperimen object reference TP5](screenshots/tp5-reference.png)
 
-Eksperimen reference menunjukkan bahwa `asli` dan `duplikatReferensi` menunjuk ke object `Character` yang sama. Perubahan level melalui `duplikatReferensi` terlihat saat object dibaca lewat `asli`, dan perbandingan `asli == duplikatReferensi` bernilai `true`. Sebaliknya, `getAllCharacters()` menghasilkan salinan list: menambahkan karakter ke list salinan tidak menambah jumlah karakter di manager.
-
-Ilustrasi output gabungan tersedia di [screenshots/tp5-output.svg](screenshots/tp5-output.svg).
-
-### Penjelasan fitur Bagian C
-
-`CharacterManager` menerapkan **composition**: manager memiliki `ArrayList<Character>` sebagai koleksi internal. Method `addCharacter`, `findByName`, dan `removeCharacter` menyediakan operasi pengelolaan dasar. Nama karakter diperiksa saat penambahan supaya tidak ada duplikat; pencocokan nama bersifat case-sensitive. `findByType`, `getAverageLevel`, dan `findStrongest` menyediakan pencarian serta statistik tanpa membuka list internal. Untuk melindungi struktur koleksi, `getAllCharacters()` mengembalikan salinan list, bukan list internal.
-
-### Dokumen Bagian D
-
-[Buka Google Docs — JavaVisual TP05 (Anyone with the link — Viewer)](https://docs.google.com/document/d/1wZ7kO6NrQ3Zode-1_h-my-PM2DDP8riFH3ErMOzqL-g/edit)
-
-## Riwayat TP3
-
-Class `Character` merepresentasikan karakter dengan tipe, level, HP, attack, dan mana. Atributnya bersifat private dan diakses melalui getter/setter tervalidasi. Class ini memiliki constructor untuk karakter baru dan untuk memuat data yang sudah ada, serta method `isAlive()` untuk memeriksa HP.
+Eksperimen reference menunjukkan bahwa dua variabel dapat menunjuk ke objek `Character` yang sama, sehingga perubahan lewat salah satunya terlihat melalui variabel lain. Sebaliknya, `getAllCharacters()` mengembalikan salinan list; menambahkan elemen ke salinan tidak menambah koleksi internal manager.
 
 ## Menjalankan program
 
-Dengan JDK terpasang, dari direktori repository jalankan:
+Dengan JDK terpasang, jalankan perintah berikut dari direktori repository:
 
 ```powershell
-javac -encoding UTF-8 -d out src\Main.java src\com\unpri\charactermanager\model\Character.java src\com\unpri\charactermanager\model\CharacterType.java src\com\unpri\charactermanager\model\CharacterManager.java
+javac -encoding UTF-8 -d out src\Main.java src\com\unpri\charactermanager\model\Character.java src\com\unpri\charactermanager\model\CharacterType.java src\com\unpri\charactermanager\model\CharacterManager.java src\com\unpri\charactermanager\view\MainWindow.java
 java -cp out Main
 ```
 
@@ -60,16 +66,18 @@ java -cp out Main
 .
 ├── README.md
 ├── screenshots/
+│   ├── tP8.png
 │   ├── tp5-crud.png
-│   ├── tp5-reference.png
-│   └── tp5-output.svg
+│   └── tp5-reference.png
 └── src/
     ├── Main.java
     └── com/
         └── unpri/
             └── charactermanager/
-                └── model/
-                    ├── Character.java
-                    ├── CharacterManager.java
-                    └── CharacterType.java
+                ├── model/
+                │   ├── Character.java
+                │   ├── CharacterManager.java
+                │   └── CharacterType.java
+                └── view/
+                    └── MainWindow.java
 ```
