@@ -12,8 +12,9 @@ public class Main {
         manager.addCharacter(new Character("Arjuna", CharacterType.WARRIOR, 5));
         manager.addCharacter(new Character("Merlin", CharacterType.MAGE, 3));
         manager.addCharacter(new Character("Athena", CharacterType.ARCHER, 4));
-        manager.addCharacter(new Character("Gandalf", CharacterType.MAGE, 2));
-        manager.addCharacter(new Character("Lara", CharacterType.ARCHER, 1));
+        manager.addCharacter(new Character("Gatotkaca", CharacterType.WARRIOR, 7)); // level tinggi
+        manager.addCharacter(new Character("Morgana", CharacterType.MAGE, 1));      // level rendah
+        manager.addCharacter(new Character("Saraswati", CharacterType.HEALER, 6)); // role keempat, level tinggi
 
         // 2. Jalankan GUI dengan AMAN di Event Dispatch Thread
         SwingUtilities.invokeLater(() -> {
