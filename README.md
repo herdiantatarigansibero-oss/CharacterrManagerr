@@ -56,7 +56,7 @@ Warna adalah bagian dari presentasi antarmuka, bukan data atau aturan domain kar
 
 ### Analisis GUI & MVC — Bagian D
 
-[Buka Google Docs — Bagian D: Analisis GUI & MVC](https://docs.google.com/document/d/1imlYQ9Aih3xNyvJu5ATt4Si4RcZcdOnRJO2-pMKvIcI/edit)
+[Buka Google Docs — Bagian D: Analisis GUI & MVC](https://docs.google.com/document/d/1JDPi8U_Az4XEmBgMA7m4c6W6u-jlbwaB7kSiREIT3rQ/edit)
 
 Dokumen disetel ke **Siapa saja yang memiliki link — Pelihat (Viewer)**.
 
